@@ -2,4 +2,4 @@ language: java
 
 script:
 - mvn integration-test
-- mvn checkstyle:checkstyle -Dcheckstyle.config.location=my_checks.xml
+- mvn checkstyle:check -Dcheckstyle.config.location=my_checks.xml

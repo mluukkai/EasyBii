@@ -25,11 +25,7 @@ public class AuthenticationService {
     }
 
     public boolean createUser(String username, String password) {
-        if (userDao.findByName(username) != null) {
-            return false;
-        }
-
-        if (invalid(username, password)) {
+        if (userExists(username) || invalid(username, password) ) {
             return false;
         }
 
@@ -38,19 +34,27 @@ public class AuthenticationService {
         return true;
     }
 
+    public boolean userExists(String username) {
+        return userDao.findByName(username) != null;
+    }
+
     private boolean invalid(String username, String password) {
         if ( username.length()<3) {
             return true;
         }
         
-        if ( password.length()<8) {
-            return true;
-        }
-
-        if ( !password.matches(".*(0|1|2|3|4|5|6|7|8|9).*")) {
-            return true;
-        }
+        if ( passwordInvalid(password)) return true;
        
+        return false;
+    }
+
+    public boolean passwordInvalid(String password) {
+        if (password.length()<8) {
+            return true;
+        }
+        if (!password.matches(".*(0|1|2|3|4|5|6|7|8|9).*")) {
+            return true;
+        }
         return false;
     }
 }
