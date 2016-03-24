@@ -66,12 +66,7 @@ public class App {
         ApplicationContext ctx = new FileSystemXmlApplicationContext("src/main/resources/spring-context.xml");
 
         App application = ctx.getBean(App.class);
-        application.run();        
-        
-        //UserDao dao = new InMemoryUserDao();
-        //IO io = new ConsoleIO();
-        //AuthenticationService auth = new AuthenticationService(dao);
-        //new App(io, auth).run();
+        application.run();               
     }
     
     // testejä debugatessa saattaa olla hyödyllistä testata ohjelman ajamista
